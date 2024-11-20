@@ -97,13 +97,15 @@ yes
 
 If successful you will see a message such as follows:
 
-**Apply complete! Resources: 27 added, 0 changed, 0 destroyed.
+****Apply complete! Resources: 27 added, 0 changed, 0 destroyed.**
 
-Outputs:
+**Outputs:**
 
-api_gateway_endpoint = "https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message"
-dynamodb_table_name = "poc-table"
-sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic**
+**api_gateway_endpoint = "https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message"**
+**dynamodb_table_name = "poc-table"**
+**sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic**
+**
+
 
 **NOTE:** Please copy these details and store them for later use.
 
