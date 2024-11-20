@@ -145,7 +145,7 @@ https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message
 
 A more complex example
 
-**Locate the NON SQL table**
+**Query the NON SQL table**
 
 aws dynamodb scan --table-name poc-table --region us-east-1
 
@@ -169,7 +169,7 @@ aws dynamodb scan \
     --return-consumed-capacity TOTAL
 
 
-More querries 
+More queries 
 
 aws dynamodb query \Lc
     --table-name poc-table \
