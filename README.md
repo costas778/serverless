@@ -25,6 +25,11 @@ Monitoring & Metrics: Tracks API usage and performance
 
 The service handles all the heavy lifting of accepting and processing API calls, including traffic management, authorization, monitoring, and version management, allowing developers to focus on their application logic.
 
+**Amazon Simple Queue Service (SQS)**
+
+Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables decoupling and scaling of distributed systems and components. 
+
+This service is particularly useful when you need to decouple components of a distributed application while ensuring reliable message delivery.
 
 
 
