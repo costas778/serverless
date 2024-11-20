@@ -36,7 +36,8 @@ A AWS sandbox environemnt (you can also use a FREE tier Account)
 A GITHUB account (recommended)
 
 Steps
-git clone <the git file>
+
+git clone https://github.com/costas778/serverless.git
 
 aws configure
 
