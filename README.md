@@ -39,9 +39,13 @@ Steps
 git clone <the git file>
 
 aws configure
+
 AWS Access Key ID [****************HF4N]: 
+
 AWS Secret Access Key [****************GUzc]: 
+
 Default region name [us-east-1]: 
+
 Default output format [None]: 
 
 **NOTE:** the above are an example. You can create these with your account in IAM.
