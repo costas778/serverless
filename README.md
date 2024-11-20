@@ -106,6 +106,7 @@ dynamodb_table_name = "poc-table"
 sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic"**
 
 **NOTE:** Please copy these details and store them for later use.
+
 **NOTE** If you need to retrive this output simply use the terraform output account.
 
 
