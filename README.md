@@ -44,14 +44,14 @@ Amazon DynamoDB is a fully managed NoSQL database service that provides fast, pr
 
 DynamoDB is particularly well-suited for applications that need consistent, single-digit millisecond latency at any scale.
 
-**Stream services in AWS **
+**Stream services in AWS**
 
 Stream services in AWS are designed to handle real-time data streaming and processing. 
 
 These services are particularly useful when you need to process continuous data flows in real-time or near real-time for analytics, monitoring, or data processing applications.
 
 
-**Amazon Simple Notification Service (SNS) **
+**Amazon Simple Notification Service (SNS)**
 
 Amazon Simple Notification Service (SNS) is a fully managed pub/sub (publish/subscribe) messaging service. 
 
@@ -103,7 +103,7 @@ Outputs:
 
 api_gateway_endpoint = "https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message"
 dynamodb_table_name = "poc-table"
-sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic"**
+sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic**
 
 **NOTE:** Please copy these details and store them for later use.
 
