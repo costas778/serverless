@@ -370,14 +370,20 @@ The instructions might prompt you to enter your account ID. Your account ID is a
 
 ///////////////////
 terraform plan
+costas778@LIT-CY-03:~/Environment/serverless$ terraform plan
+var.account_id
+  AWS account ID
+
+  Enter a value: 533267031846
+
 var.notification_email
   Email address for SNS notifications
 
-  Enter a value: yes
+  Enter a value: costas778@gmail.com            
 
 
-Terraform used the selected providers to generate the following execution plan.
-Resource actions are indicated with the following symbols:
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
@@ -410,7 +416,7 @@ Terraform will perform the following actions:
       + rest_api_id             = (known after apply)
       + timeout_milliseconds    = 29000
       + type                    = "AWS"
-      + uri                     = "arn:aws:apigateway:us-east-1:sqs:path/654654383633/poc-queue"
+      + uri                     = "arn:aws:apigateway:us-east-1:sqs:path/533267031846/poc-queue"
     }
 
   # module.api_gateway.aws_api_gateway_integration_response.integration_response will be created
@@ -469,12 +475,10 @@ Terraform will perform the following actions:
       + root_resource_id             = (known after apply)
       + tags                         = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + tags_all                     = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
 
@@ -716,6 +720,13 @@ Terraform will perform the following actions:
       + role       = "poc-lambda-sqs-dynamodb"
     }
 
+  # module.iam.aws_iam_role_policy_attachment.lambda_dynamodbstreams_policy will be created
+  + resource "aws_iam_role_policy_attachment" "lambda_dynamodbstreams_policy" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "poc-lambda-sqs-dynamodb"
+    }
+
   # module.iam.aws_iam_role_policy_attachment.lambda_sqs_dynamodb_policy1 will be created
   + resource "aws_iam_role_policy_attachment" "lambda_sqs_dynamodb_policy1" {
       + id         = (known after apply)
@@ -786,7 +797,7 @@ Terraform will perform the following actions:
       + code_sha256                    = (known after apply)
       + filename                       = "modules/lambda/functions/dynamodb_to_sns.zip"
       + function_name                  = "poc-dynamodb-to-sns"
-      + handler                        = "index.handler"
+      + handler                        = "index.lambda_handler"
       + id                             = (known after apply)
       + invoke_arn                     = (known after apply)
       + last_modified                  = (known after apply)
@@ -797,7 +808,7 @@ Terraform will perform the following actions:
       + qualified_invoke_arn           = (known after apply)
       + reserved_concurrent_executions = -1
       + role                           = (known after apply)
-      + runtime                        = "nodejs14.x"
+      + runtime                        = "python3.11"
       + signing_job_arn                = (known after apply)
       + signing_profile_version_arn    = (known after apply)
       + skip_destroy                   = false
@@ -805,12 +816,10 @@ Terraform will perform the following actions:
       + source_code_size               = (known after apply)
       + tags                           = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + tags_all                       = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + timeout                        = 30
@@ -834,7 +843,7 @@ Terraform will perform the following actions:
       + code_sha256                    = (known after apply)
       + filename                       = "modules/lambda/functions/sqs_to_dynamodb.zip"
       + function_name                  = "poc-sqs-to-dynamodb"
-      + handler                        = "index.handler"
+      + handler                        = "index.lambda_handler"
       + id                             = (known after apply)
       + invoke_arn                     = (known after apply)
       + last_modified                  = (known after apply)
@@ -845,7 +854,7 @@ Terraform will perform the following actions:
       + qualified_invoke_arn           = (known after apply)
       + reserved_concurrent_executions = -1
       + role                           = (known after apply)
-      + runtime                        = "nodejs14.x"
+      + runtime                        = "python3.11"
       + signing_job_arn                = (known after apply)
       + signing_profile_version_arn    = (known after apply)
       + skip_destroy                   = false
@@ -853,12 +862,10 @@ Terraform will perform the following actions:
       + source_code_size               = (known after apply)
       + tags                           = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + tags_all                       = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + timeout                        = 30
@@ -866,7 +873,6 @@ Terraform will perform the following actions:
 
       + environment {
           + variables = {
-              + "AWS_REGION"     = "us-east-1"
               + "DYNAMODB_TABLE" = "poc-table"
             }
         }
@@ -899,7 +905,7 @@ Terraform will perform the following actions:
       + arn                             = (known after apply)
       + confirmation_timeout_in_minutes = 1
       + confirmation_was_authenticated  = (known after apply)
-      + endpoint                        = "yes"
+      + endpoint                        = "costas778@gmail.com"
       + endpoint_auto_confirms          = false
       + filter_policy_scope             = (known after apply)
       + id                              = (known after apply)
@@ -931,12 +937,10 @@ Terraform will perform the following actions:
       + sqs_managed_sse_enabled           = (known after apply)
       + tags                              = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + tags_all                          = {
           + "Environment" = "poc"
-          + "ManagedBy"   = "terraform"
           + "Project"     = "serverless-poc"
         }
       + url                               = (known after apply)
@@ -950,119 +954,167 @@ Terraform will perform the following actions:
       + queue_url = (known after apply)
     }
 
-Plan: 26 to add, 0 to change, 0 to destroy.
+Plan: 27 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + api_gateway_endpoint = (known after apply)
   + dynamodb_table_name  = "poc-table"
   + sns_topic_arn        = (known after apply)
-╷
-│ Warning: Value for undeclared variable
-│ 
-│ The root module does not declare a variable named "email_endpoint" but a value
-│ was found in file "terraform.tfvars". If you meant to use this value, add a
-│ "variable" block to the configuration.
-│ 
-│ To silence these warnings, use TF_VAR_... environment variables to provide
-│ certain "global" settings to all configurations in your organization. To reduce
-│ the verbosity of these warnings, use the -compact-warnings option.
-╵
 
-───────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────
 
 Note: You didn't use the -out option to save this plan, so Terraform can't
 guarantee to take exactly these actions if you run "terraform apply" now.
-costas778@DESKTOP-ZBook08:~/environment_serverless1$ 
 
-//////////////////////////////////////////////
 
+/////////////////////////////////
+
+Apply complete! Resources: 27 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+api_gateway_endpoint = "https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message"
+dynamodb_table_name = "poc-table"
+sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic"
+
+
+/////////////////////////////////////////////
 Updated plan
 
-costas778@DESKTOP-ZBook08:~/environment_serverless1$ terraform plan
+
+terraform plan
+var.account_id
+  AWS account ID
+
+  Enter a value: 533267031846
+
 var.notification_email
   Email address for SNS notifications
 
   Enter a value: costas778@gmail.com
 
-module.iam.aws_iam_policy.lambda_write_dynamodb: Refreshing state... [id=arn:aws:iam::654654383633:policy/poc-lambda-write-dynamodb]
-module.iam.aws_iam_policy.lambda_sns_publish: Refreshing state... [id=arn:aws:iam::654654383633:policy/poc-lambda-sns-publish]
-module.iam.aws_iam_policy.lambda_dynamodbstreams_read: Refreshing state... [id=arn:aws:iam::654654383633:policy/poc-lambda-dynamodbstreams-read]
-module.iam.aws_iam_policy.lambda_read_sqs: Refreshing state... [id=arn:aws:iam::654654383633:policy/poc-lambda-read-sqs]
-module.sns.aws_sns_topic.poc_topic: Refreshing state... [id=arn:aws:sns:us-east-1:654654383633:poc-topic]
-module.iam.aws_iam_role.lambda_sqs_dynamodb: Refreshing state... [id=poc-lambda-sqs-dynamodb]
+module.iam.aws_iam_policy.lambda_read_sqs: Refreshing state... [id=arn:aws:iam::533267031846:policy/poc-lambda-read-sqs]
+module.iam.aws_iam_policy.lambda_dynamodbstreams_read: Refreshing state... [id=arn:aws:iam::533267031846:policy/poc-lambda-dynamodbstreams-read]
+module.iam.aws_iam_policy.lambda_write_dynamodb: Refreshing state... [id=arn:aws:iam::533267031846:policy/poc-lambda-write-dynamodb]
+module.iam.aws_iam_policy.lambda_sns_publish: Refreshing state... [id=arn:aws:iam::533267031846:policy/poc-lambda-sns-publish]
 module.iam.aws_iam_role.api_gateway_sqs: Refreshing state... [id=poc-api-gateway-sqs]
+module.sns.aws_sns_topic.poc_topic: Refreshing state... [id=arn:aws:sns:us-east-1:533267031846:poc-topic]
 module.dynamodb.aws_dynamodb_table.poc_table: Refreshing state... [id=poc-table]
-module.sns.aws_sns_topic_subscription.email_subscription: Refreshing state... [id=arn:aws:sns:us-east-1:654654383633:poc-topic:778beb1e-3414-4ffa-9883-62c766750bac]
-module.iam.aws_iam_role_policy_attachment.lambda_sqs_dynamodb_policy1: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120064712863600000002]
-module.iam.aws_iam_role_policy_attachment.lambda_sqs_dynamodb_policy2: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120064712865300000003]
-module.iam.aws_iam_role_policy_attachment.lambda_basic: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120064712835900000001]
-module.iam.aws_iam_role_policy_attachment.lambda_dynamodbstreams_policy: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120070958979900000001]
-module.sqs.aws_sqs_queue.poc_queue: Refreshing state... [id=https://sqs.us-east-1.amazonaws.com/654654383633/poc-queue]
-module.sqs.aws_sqs_queue_policy.poc_queue_policy: Refreshing state... [id=https://sqs.us-east-1.amazonaws.com/654654383633/poc-queue]
-module.api_gateway.aws_api_gateway_rest_api.poc_api: Refreshing state... [id=rufxhmnoph]
-module.lambda.aws_lambda_function.dynamodb_to_sns: Refreshing state... [id=poc-dynamodb-to-sns]
+module.iam.aws_iam_role.lambda_sqs_dynamodb: Refreshing state... [id=poc-lambda-sqs-dynamodb]
+module.sns.aws_sns_topic_subscription.email_subscription: Refreshing state... [id=arn:aws:sns:us-east-1:533267031846:poc-topic:70bc6621-abe5-497a-b68f-07e6a7c0980c]
+module.iam.aws_iam_role_policy_attachment.lambda_dynamodbstreams_policy: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120140852429500000004]
+module.iam.aws_iam_role_policy_attachment.lambda_sqs_dynamodb_policy2: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120140852405800000002]
+module.iam.aws_iam_role_policy_attachment.lambda_sqs_dynamodb_policy1: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120140852399600000001]
+module.iam.aws_iam_role_policy_attachment.lambda_basic: Refreshing state... [id=poc-lambda-sqs-dynamodb-20241120140852416100000003]
+module.sqs.aws_sqs_queue.poc_queue: Refreshing state... [id=https://sqs.us-east-1.amazonaws.com/533267031846/poc-queue]
+module.sqs.aws_sqs_queue_policy.poc_queue_policy: Refreshing state... [id=https://sqs.us-east-1.amazonaws.com/533267031846/poc-queue]
+module.api_gateway.aws_api_gateway_rest_api.poc_api: Refreshing state... [id=b7rsjzyxx3]
 module.lambda.aws_lambda_function.sqs_to_dynamodb: Refreshing state... [id=poc-sqs-to-dynamodb]
-module.api_gateway.aws_api_gateway_resource.poc_resource: Refreshing state... [id=qy0f8f]
-module.api_gateway.aws_api_gateway_method.poc_method: Refreshing state... [id=agm-rufxhmnoph-qy0f8f-POST]
-module.api_gateway.aws_api_gateway_method_response.response_200: Refreshing state... [id=agmr-rufxhmnoph-qy0f8f-POST-200]
-module.api_gateway.aws_api_gateway_integration.sqs_integration: Refreshing state... [id=agi-rufxhmnoph-qy0f8f-POST]
-module.lambda.aws_lambda_event_source_mapping.sqs_trigger: Refreshing state... [id=238de1a2-134b-4ac3-b175-734ca6bfea0e]
-module.lambda.aws_lambda_event_source_mapping.dynamodb_trigger: Refreshing state... [id=199619f6-bf7b-44db-99dd-588e99eb66af]
-module.api_gateway.aws_api_gateway_integration_response.integration_response: Refreshing state... [id=agir-rufxhmnoph-qy0f8f-POST-200]
-module.api_gateway.aws_api_gateway_deployment.poc_deployment: Refreshing state... [id=ckex01]
-module.api_gateway.aws_api_gateway_stage.poc_stage: Refreshing state... [id=ags-rufxhmnoph-poc]
+module.lambda.aws_lambda_function.dynamodb_to_sns: Refreshing state... [id=poc-dynamodb-to-sns]
+module.api_gateway.aws_api_gateway_resource.poc_resource: Refreshing state... [id=q51wl2]
+module.api_gateway.aws_api_gateway_method.poc_method: Refreshing state... [id=agm-b7rsjzyxx3-q51wl2-POST]
+module.lambda.aws_lambda_event_source_mapping.dynamodb_trigger: Refreshing state... [id=3d14959f-49f1-4396-8264-d22914c8bdf1]
+module.lambda.aws_lambda_event_source_mapping.sqs_trigger: Refreshing state... [id=436aa370-3eab-4e9f-8dd3-e2f3bad59885]
+module.api_gateway.aws_api_gateway_method_response.response_200: Refreshing state... [id=agmr-b7rsjzyxx3-q51wl2-POST-200]
+module.api_gateway.aws_api_gateway_integration.sqs_integration: Refreshing state... [id=agi-b7rsjzyxx3-q51wl2-POST]
+module.api_gateway.aws_api_gateway_integration_response.integration_response: Refreshing state... [id=agir-b7rsjzyxx3-q51wl2-POST-200]
+module.api_gateway.aws_api_gateway_deployment.poc_deployment: Refreshing state... [id=10yqto]
+module.api_gateway.aws_api_gateway_stage.poc_stage: Refreshing state... [id=ags-b7rsjzyxx3-poc]
 
-Terraform used the selected providers to generate the following execution plan.
-Resource actions are indicated with the following symbols:
-  ~ update in-place
+Terraform used the selected providers to generate the
+following execution plan. Resource actions are indicated
+with the following symbols:
+-/+ destroy and then create replacement
 
 Terraform will perform the following actions:
 
-  # module.lambda.aws_lambda_function.dynamodb_to_sns will be updated in-place
-  ~ resource "aws_lambda_function" "dynamodb_to_sns" {
-        id                             = "poc-dynamodb-to-sns"
-      ~ runtime                        = "nodejs20.x" -> "python3.11"
-        tags                           = {
-            "Environment" = "poc"
-            "ManagedBy"   = "terraform"
-            "Project"     = "serverless-poc"
-        }
-        # (28 unchanged attributes hidden)
+  # module.dynamodb.aws_dynamodb_table.poc_table must be replaced
+-/+ resource "aws_dynamodb_table" "poc_table" {
+      ~ arn                         = "arn:aws:dynamodb:us-east-1:533267031846:table/poc-table" -> (known after apply)
+      - deletion_protection_enabled = false -> null
+      ~ hash_key                    = "customerID" -> "pk" # forces replacement
+      ~ id                          = "poc-table" -> (known after apply)
+        name                        = "poc-table"
+      ~ range_key                   = "item" -> "timestamp" # forces replacement
+      ~ read_capacity               = 0 -> (known after apply)
+      ~ stream_arn                  = "arn:aws:dynamodb:us-east-1:533267031846:table/poc-table/stream/2024-11-20T14:08:51.466" -> (known after apply)
+      ~ stream_label                = "2024-11-20T14:08:51.466" -> (known after apply)
+      - table_class                 = "STANDARD" -> null
+      - tags                        = {} -> null
+      ~ tags_all                    = {} -> (known after apply)
+      ~ write_capacity              = 0 -> (known after apply)
+        # (3 unchanged attributes hidden)
 
-        # (4 unchanged blocks hidden)
+      - attribute {
+          - name = "customerID" -> null
+          - type = "S" -> null
+        }
+      - attribute {
+          - name = "item" -> null
+          - type = "S" -> null
+        }
+      + attribute {
+          + name = "pk"
+          + type = "S"
+        }
+      + attribute {
+          + name = "timestamp"
+          + type = "S"
+        }
+
+      ~ point_in_time_recovery (known after apply)
+      - point_in_time_recovery {
+          - enabled = false -> null
+        }
+
+      ~ server_side_encryption (known after apply)
+
+      ~ ttl (known after apply)
+      - ttl {
+          - enabled        = false -> null
+            # (1 unchanged attribute hidden)
+        }
     }
 
-  # module.lambda.aws_lambda_function.sqs_to_dynamodb will be updated in-place
-  ~ resource "aws_lambda_function" "sqs_to_dynamodb" {
-        id                             = "poc-sqs-to-dynamodb"
-      ~ runtime                        = "nodejs20.x" -> "python3.11"
-        tags                           = {
-            "Environment" = "poc"
-            "ManagedBy"   = "terraform"
-            "Project"     = "serverless-poc"
-        }
-        # (28 unchanged attributes hidden)
+  # module.lambda.aws_lambda_event_source_mapping.dynamodb_trigger must be replaced
+-/+ resource "aws_lambda_event_source_mapping" "dynamodb_trigger" {
+      ~ arn                                = "arn:aws:lambda:us-east-1:533267031846:event-source-mapping:3d14959f-49f1-4396-8264-d22914c8bdf1" -> (known after apply)
+      - bisect_batch_on_function_error     = false -> null
+      ~ event_source_arn                   = "arn:aws:dynamodb:us-east-1:533267031846:table/poc-table/stream/2024-11-20T14:08:51.466" -> (known after apply) # forces replacement
+      ~ function_arn                       = "arn:aws:lambda:us-east-1:533267031846:function:poc-dynamodb-to-sns" -> (known after apply)
+      - function_response_types            = [] -> null
+      ~ id                                 = "3d14959f-49f1-4396-8264-d22914c8bdf1" -> (known after apply)
+      ~ last_modified                      = "2024-11-20T14:11:00Z" -> (known after apply)
+      ~ last_processing_result             = "No records processed" -> (known after apply)
+      - maximum_batching_window_in_seconds = 0 -> null
+      ~ maximum_record_age_in_seconds      = -1 -> (known after apply)
+      ~ maximum_retry_attempts             = -1 -> (known after apply)
+      ~ parallelization_factor             = 1 -> (known after apply)
+      - queues                             = [] -> null
+      ~ state                              = "Enabled" -> (known after apply)
+      ~ state_transition_reason            = "User action" -> (known after apply)
+      - tags                               = {} -> null
+      ~ tags_all                           = {} -> (known after apply)
+      - topics                             = [] -> null
+      - tumbling_window_in_seconds         = 0 -> null
+      ~ uuid                               = "3d14959f-49f1-4396-8264-d22914c8bdf1" -> (known after apply)
+        # (6 unchanged attributes hidden)
 
-        # (4 unchanged blocks hidden)
+      ~ amazon_managed_kafka_event_source_config (known after apply)
+
+      - destination_config {
+          - on_failure {}
+        }
+
+      ~ self_managed_kafka_event_source_config (known after apply)
     }
 
-Plan: 0 to add, 2 to change, 0 to destroy.
-╷
-│ Warning: Value for undeclared variable
-│ 
-│ The root module does not declare a variable named "email_endpoint" but a value
-│ was found in file "terraform.tfvars". If you meant to use this value, add a
-│ "variable" block to the configuration.
-│ 
-│ To silence these warnings, use TF_VAR_... environment variables to provide
-│ certain "global" settings to all configurations in your organization. To reduce
-│ the verbosity of these warnings, use the -compact-warnings option.
-╵
+Plan: 2 to add, 0 to change, 2 to destroy.
 
-───────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────
 
-Note: You didn't use the -out option to save this plan, so Terraform can't
-guarantee to take exactly these actions if you run "terraform apply" now.
-costas778@DESKTOP-ZBook08:~/environment_serverless1$ 
-
+Note: You didn't use the -out option to save this plan, so
+Terraform can't guarantee to take exactly these actions if
+you run "terraform apply" now.
+costas778@LIT-CY-03:~/Environment/serverless$ 
 

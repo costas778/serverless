@@ -1,39 +1,45 @@
-import boto3
 import json
-import os
 import uuid
+import boto3
+import os  # Add this import
+from datetime import datetime
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])  # Keep using environment variable
 
 def lambda_handler(event, context):
-    print("Received event:", json.dumps(event, indent=2))
     try:
         for record in event['Records']:
-            print("Processing record:", json.dumps(record, indent=2))
-            payload = record["body"]
+            print(f"Processing record: {record}")
             
-            # If payload is a string (likely JSON), convert it to dict
-            if isinstance(payload, str):
-                try:
-                    payload = json.loads(payload)
-                except json.JSONDecodeError:
-                    print("Warning: Payload is not JSON format")
+            # Parse the message body
+            message_body = json.loads(record['body'])
             
-            # Insert into DynamoDB
+            # Generate a unique message ID
+            message_id = str(uuid.uuid4())
+            
+            # Use the timestamp from the message or generate current time
+            timestamp = message_body.get('timestamp') or datetime.utcnow().isoformat()
+            
+            # Create item for DynamoDB
             item = {
-                'orderID': str(uuid.uuid4()),
-                'order': payload
+                'pk': f"MSG#{message_id}",           # Partition key
+                'timestamp': timestamp,               # Sort key
+                'message': message_body.get('message'),
+                'status': 'PROCESSED',
+                'created_at': datetime.utcnow().isoformat()
             }
-            print("Inserting item:", json.dumps(item, indent=2))
+            
+            print(f"Inserting item: {json.dumps(item, indent=2)}")
+            
+            # Put item in DynamoDB
             table.put_item(Item=item)
-        
+            
         return {
             'statusCode': 200,
-            'body': 'Successfully processed records'
+            'body': json.dumps('Messages processed successfully')
         }
-    
     except Exception as e:
         print(f"Error: {str(e)}")
         raise e

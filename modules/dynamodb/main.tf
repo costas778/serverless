@@ -1,16 +1,16 @@
 resource "aws_dynamodb_table" "poc_table" {
   name           = "${var.environment}-table"
   billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "customerID"
-  range_key      = "item"
+  hash_key       = "pk"
+  range_key      = "timestamp"
 
   attribute {
-    name = "customerID"
+    name = "pk"
     type = "S"
   }
 
   attribute {
-    name = "item"
+    name = "timestamp"
     type = "S"
   }
 
