@@ -38,6 +38,14 @@ AWS Lambda is a serverless compute service that runs code in response to events 
 Lambda is ideal for event-driven architectures and scenarios where you want to focus on code without managing infrastructure.
 
 
+**Amazon DynamoDB**
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast, predictable performance with seamless scalability. 
+
+DynamoDB is particularly well-suited for applications that need consistent, single-digit millisecond latency at any scale.
+
+
+
 
 
 
