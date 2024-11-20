@@ -44,7 +44,11 @@ Amazon DynamoDB is a fully managed NoSQL database service that provides fast, pr
 
 DynamoDB is particularly well-suited for applications that need consistent, single-digit millisecond latency at any scale.
 
+**Stream services in AWS **
 
+Stream services in AWS are designed to handle real-time data streaming and processing. 
+
+These services are particularly useful when you need to process continuous data flows in real-time or near real-time for analytics, monitoring, or data processing applications.
 
 
 
