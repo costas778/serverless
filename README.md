@@ -31,7 +31,7 @@ Amazon Simple Queue Service (SQS) is a fully managed message queuing service tha
 
 This service is particularly useful when you need to decouple components of a distributed application while ensuring reliable message delivery.
 
-**AWS Lambda **
+**AWS Lambda**
 
 AWS Lambda is a serverless compute service that runs code in response to events without requiring you to manage servers. 
 
