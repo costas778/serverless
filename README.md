@@ -52,8 +52,11 @@ Default output format [None]:
 **NOTE:** the above are an example. You can create these with your account in IAM.
 
 terraform init 
+
 terraform fmt
-terraform plan (I recommend you copy and paste this generated output in a text file for troubleshooting purposes),
+
+terraform plan (I recommend you copy and paste this generated output in a text file for troubleshooting purposes)
+
 terraform apply
 
 When prompted:
