@@ -51,6 +51,11 @@ Stream services in AWS are designed to handle real-time data streaming and proce
 These services are particularly useful when you need to process continuous data flows in real-time or near real-time for analytics, monitoring, or data processing applications.
 
 
+**Amazon Simple Notification Service (SNS) **
+
+Amazon Simple Notification Service (SNS) is a fully managed pub/sub (publish/subscribe) messaging service. 
+
+SNS is particularly useful when you need to send one message to multiple subscribers or implement event-driven architectures. 
 
 
 Ok we need a few prerequisite to make this work. 
