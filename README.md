@@ -107,9 +107,11 @@ If successful you will see a message such as follows:
 **
 
 
+
 **NOTE:** Please copy these details and store them for later use.
 
 **NOTE** If you need to retrive this output simply use the terraform output account.
+
 
 
 **Post Install Tests**
