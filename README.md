@@ -35,11 +35,11 @@ A WSL Ubuntu image (20.x) with GIT, Terraform, zip, AWSCLI and VSC loaded.
 A AWS sandbox environemnt (you can also use a FREE tier Account)
 A GITHUB account (recommended)
 
-Steps
+**Steps**
 
-git clone https://github.com/costas778/serverless.git
+1. git clone https://github.com/costas778/serverless.git
 
-aws configure
+2. aws configure
 
 AWS Access Key ID [****************HF4N]: 
 
@@ -51,13 +51,14 @@ Default output format [None]:
 
 **NOTE:** the above are an example. You can create these with your account in IAM.
 
-terraform init 
 
-terraform fmt
+3. terraform init 
 
-terraform plan (I recommend you copy and paste this generated output in a text file for troubleshooting purposes)
+4. terraform fmt
 
-terraform apply
+5. terraform plan (I recommend you copy and paste this generated output in a text file for troubleshooting purposes)
+
+6. terraform apply
 
 When prompted:
 place your Account ID (a bunch of numbers)
@@ -66,13 +67,13 @@ yes
 
 If successful you will see a message such as follows:
 
-Apply complete! Resources: 27 added, 0 changed, 0 destroyed.
+**Apply complete! Resources: 27 added, 0 changed, 0 destroyed.
 
 Outputs:
 
 api_gateway_endpoint = "https://b7rsjzyxx3.execute-api.us-east-1.amazonaws.com/poc/message"
 dynamodb_table_name = "poc-table"
-sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic"
+sns_topic_arn = "arn:aws:sns:us-east-1:533267031846:poc-topic"**
 
 **NOTE:** Please copy these details and store them for later use.
 **NOTE** If you need to retrive this output simply use the terraform output account.
